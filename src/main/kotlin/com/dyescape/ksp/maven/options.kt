@@ -17,7 +17,7 @@ private fun parseUserOption(option: String): UserOption? {
 
 private data class UserOption(val pluginName: String, val key: String, val value: String)
 
-private val availableOptions = KspCliOption.values().associateBy { it.optionName }
+private val availableOptions = KspCliOption.entries.associateBy { it.optionName }
 
 fun MojoExecution.findKspOptions(): Map<KspCliOption, List<String>> {
     val pluginOptions = configuration.getChild("pluginOptions") ?: return emptyMap()

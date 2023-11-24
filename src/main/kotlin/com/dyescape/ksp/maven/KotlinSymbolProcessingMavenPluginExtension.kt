@@ -59,7 +59,7 @@ class KotlinSymbolProcessingMavenPluginExtension : KotlinMavenPluginExtension {
             }
         }
 
-        return options.map { (option, value) -> PluginOption("ksp", KSP_PLUGIN_ID, option.optionName, value) }
+        return options.map { (option, value) -> PluginOption(KSP_PLUGIN_NAME, KSP_PLUGIN_ID, option.optionName, value) }
     }
 
     private fun buildDefaultOptions(

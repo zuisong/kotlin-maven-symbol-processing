@@ -45,19 +45,19 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.9.20</kotlin.version>
-        <ksp.version>1.0.13</ksp.version>
+        <ksp.version>1.0.14</ksp.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>3.8.1</version>
+            <version>3.9.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
-            <version>3.8.1</version>
+            <version>3.9.0</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
