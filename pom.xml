@@ -44,8 +44,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>1.9.20</kotlin.version>
-        <ksp.version>1.0.14</ksp.version>
+        <kotlin.version>1.9.23</kotlin.version>
+        <ksp.version>1.0.20</ksp.version>
     </properties>
 
     <dependencies>
