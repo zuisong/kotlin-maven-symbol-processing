@@ -38,15 +38,13 @@ class KotlinSymbolProcessingMavenPluginExtension : KotlinMavenPluginExtension {
         val userOptions = execution.findKspOptions()
         val defaultOptions = buildDefaultOptions(project, execution, scopes, test)
 
-        val options = buildMap {
-            for ((option, defaultValue) in defaultOptions) {
-                if (option in userOptions) {
-                    // the option was already specified by the user
-                    continue
-                }
-
-                put(option, defaultValue)
+        val options = mutableMapOf<KspCliOption, String>()
+        for ((option, defaultValue) in defaultOptions) {
+            if (option in userOptions) {
+                // the option was already specified by the user
+                continue
             }
+            options.put(option, defaultValue)
         }
 
         for (outputDirOption in outputDirOptions) {
@@ -120,33 +118,38 @@ class KotlinSymbolProcessingMavenPluginExtension : KotlinMavenPluginExtension {
     }
 
     private fun MojoExecution.findScopes() = when (mojoDescriptor.dependencyResolutionRequired) {
-        ResolutionScope.COMPILE.id()              -> setOf(
+        ResolutionScope.COMPILE.id() -> setOf(
             Artifact.SCOPE_COMPILE,
             Artifact.SCOPE_SYSTEM,
             Artifact.SCOPE_PROVIDED,
         )
-        ResolutionScope.RUNTIME.id()              -> setOf(
+
+        ResolutionScope.RUNTIME.id() -> setOf(
             Artifact.SCOPE_COMPILE,
             Artifact.SCOPE_RUNTIME,
         )
+
         ResolutionScope.COMPILE_PLUS_RUNTIME.id() -> setOf(
             Artifact.SCOPE_COMPILE,
             Artifact.SCOPE_SYSTEM,
             Artifact.SCOPE_PROVIDED,
             Artifact.SCOPE_RUNTIME,
         )
-        ResolutionScope.RUNTIME_PLUS_SYSTEM.id()  -> setOf(
+
+        ResolutionScope.RUNTIME_PLUS_SYSTEM.id() -> setOf(
             Artifact.SCOPE_COMPILE,
             Artifact.SCOPE_SYSTEM,
             Artifact.SCOPE_RUNTIME,
         )
-        ResolutionScope.TEST.id()                 -> setOf(
+
+        ResolutionScope.TEST.id() -> setOf(
             Artifact.SCOPE_COMPILE,
             Artifact.SCOPE_SYSTEM,
             Artifact.SCOPE_PROVIDED,
             Artifact.SCOPE_RUNTIME,
             Artifact.SCOPE_TEST,
         )
-        else                                      -> emptySet()
+
+        else -> emptySet()
     }
 }
